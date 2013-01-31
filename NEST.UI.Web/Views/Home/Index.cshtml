@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "NEST";
+}
+@model NEST.UI.Web.Models.SearchModel
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    @Html.ActionLink("Rebuild index", "CreateIndex", "Home")
+    @Html.TextBoxFor(m => m.Search)
+    <input type="submit" value="Search" />
+    if (Model.Documents != null)
+    {
+        <h3>Results</h3>
+        <ol class="round">
+            @foreach (var product in Model.Documents)
+            {
+                <li class="one">
+                    <h5>@product.Name</h5>
+                    @product.Content
+                </li>
+            }
+        </ol>
+    }
+}
